@@ -1,6 +1,11 @@
 
 import os
 import sys
+import os
+from dotenv import load_dotenv
+
+# Loads variables from your local .env file
+load_dotenv()
 from google import genai
 from google.genai import types
 
