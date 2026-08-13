@@ -5,42 +5,45 @@ from google import genai
 from google.genai import types
 
 def create_coding_agent():
-    # Ensure API key is configured
-    if not os.environ.get("GEMINI_API_KEY"):
-        print("Error: GEMINI_API_KEY environment variable is not set.")
-        print("Please export GEMINI_API_KEY='AQ.Ab8RN6K5LfC0KAJ2d8Z6V-q2UZyLJNwjYMXjKvdpYtbssdOGpg' before running.")
-        sys.exit(1)
+    import os
+from google import genai
+
+# Correct and safe way
+if not os.environ.get("GEMINI_API_KEY"):
+    print("Error: GEMINI_API_KEY environment variable is not set.")
+
+client = genai.Client()
 
     # Initialize the Google GenAI Client
-    client = genai.Client()
+client = genai.Client()
 
-    # System instruction guiding the model's persona and architecture role
-    system_instruction = (
+# System instruction guiding the model's persona and architecture role
+system_instruction = (
         "You are an expert AI Software Engineer and Technical Architect assistant. "
         "Your role is to help write, debug, refactor, and structure Python and software projects. "
         "When requested, generate complete, clean, documented, and modular code. "
         "When executing math or algorithmic validation, use the built-in code execution tool."
     )
 
-    # Enable native code execution tool
-    config = types.GenerateContentConfig(
+# Enable native code execution tool
+config = types.GenerateContentConfig(
         system_instruction=system_instruction,
         temperature=0.2,  # Low temperature for precise code generation
         tools=[types.Tool(code_execution=types.ToolCodeExecution())]
     )
 
-    # Create a persistent chat session using Gemini 2.5 Flash
-    chat = client.chats.create(
+# Create a persistent chat session using Gemini 2.5 Flash
+chat = client.chats.create(
         model="gemini-3.5-flash",
         config=config
     )
 
-    print("=" * 60)
-    print("🤖 AI Coding & Project Assistant Initialized")
-    print("Type 'exit' or 'quit' to end the session.")
-    print("=" * 60 + "\n")
+print("=" * 60)
+print("🤖 AI Coding & Project Assistant Initialized")
+print("Type 'exit' or 'quit' to end the session.")
+print("=" * 60 + "\n")
 
-    while True:
+while True:
         try:
             user_input = input("\n👤 You: ").strip()
             if not user_input:
