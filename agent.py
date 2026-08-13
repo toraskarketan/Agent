@@ -30,7 +30,7 @@ def create_coding_agent():
 
     # Create a persistent chat session using Gemini 2.5 Flash
     chat = client.chats.create(
-        model="gemini-2.5-flash",
+        model="gemini-3.5-flash",
         config=config
     )
 
