@@ -7,7 +7,7 @@ def create_coding_agent():
     # Ensure API key is configured
     if not os.environ.get("GEMINI_API_KEY"):
         print("Error: GEMINI_API_KEY environment variable is not set.")
-        print("Please export GEMINI_API_KEY='your_key_here' before running.")
+        print("Please export GEMINI_API_KEY='AQ.Ab8RN6K5LfC0KAJ2d8Z6V-q2UZyLJNwjYMXjKvdpYtbssdOGpg' before running.")
         sys.exit(1)
 
     # Initialize the Google GenAI Client
